@@ -1,0 +1,171 @@
+# OMM SAI TRADERS - Complete Setup Guide
+# Owner: Prafulla Kumar Sahoo | Nayagarh, Odisha
+
+===========================================================
+## 1. RUN LOCALLY IN PYCHARM COMMUNITY EDITION
+===========================================================
+
+### Step 1: Open Project
+- Open PyCharm → File → Open → select "omm-sai-traders" folder
+
+### Step 2: Create Virtual Environment
+- PyCharm bottom bar → Python Interpreter → Add Interpreter → Virtualenv
+
+### Step 3: Install Dependencies
+Open PyCharm Terminal (View → Tool Windows → Terminal):
+
+    cd backend
+    pip install -r requirements.txt
+
+### Step 4: Configure Environment (Optional - for Supabase)
+Create backend/.env file:
+
+    SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+    SUPABASE_KEY=your_anon_key_here
+
+### Step 5: Run Backend
+In PyCharm, open backend/main.py → Right-click → Run 'main'
+OR in Terminal:
+
+    cd backend
+    python main.py
+
+Backend runs at: http://localhost:8000
+API Docs at:     http://localhost:8000/docs
+
+### Step 6: Open Frontend
+Simply double-click: frontend/index.html
+OR right-click → Open In → Browser
+
+
+===========================================================
+## 2. SUPABASE DATABASE SETUP
+===========================================================
+
+1. Go to https://supabase.com → Create new project
+2. Go to SQL Editor → paste contents of backend/supabase_schema.sql → Run
+3. Go to Settings → API → copy Project URL and anon key
+4. Add to backend/.env:
+       SUPABASE_URL=https://xxxxx.supabase.co
+       SUPABASE_KEY=eyJhbGci...
+
+
+===========================================================
+## 3. DEPLOY BACKEND ON HUGGINGFACE SPACES
+===========================================================
+
+1. Go to https://huggingface.co → New Space
+2. Name: omm-sai-traders-api
+3. SDK: Docker
+4. Upload these files to the Space:
+   - Dockerfile
+   - backend/main.py
+   - backend/app.py
+   - backend/requirements.txt
+   - README.md
+
+5. Go to Settings → Variables and Secrets → Add:
+   - SUPABASE_URL = your URL
+   - SUPABASE_KEY = your key
+
+6. Space URL will be like:
+   https://YOUR_USERNAME-omm-sai-traders-api.hf.space
+
+7. Update API_BASE in frontend/index.html line:
+   const API_BASE = "https://YOUR_USERNAME-omm-sai-traders-api.hf.space";
+
+
+===========================================================
+## 4. DEPLOY FRONTEND ON VERCEL
+===========================================================
+
+Option A - Vercel CLI:
+    npm install -g vercel
+    cd omm-sai-traders
+    vercel
+
+Option B - Vercel Website:
+1. Push project to GitHub
+2. Go to https://vercel.com → Import Project → select repo
+3. Framework: Other (Static)
+4. Root directory: frontend
+5. Deploy → Get URL like: https://omm-sai-traders.vercel.app
+
+
+===========================================================
+## 5. PROJECT STRUCTURE
+===========================================================
+
+omm-sai-traders/
+├── frontend/
+│   ├── index.html          ← Complete website (single file)
+│   └── assets/
+│       └── owner.jpg       ← Owner photo
+│
+├── backend/
+│   ├── main.py             ← FastAPI app (all routes)
+│   ├── app.py              ← HuggingFace entry point
+│   ├── requirements.txt    ← Python dependencies
+│   └── supabase_schema.sql ← Database setup
+│
+├── Dockerfile              ← HuggingFace Docker config
+├── vercel.json             ← Vercel deployment config
+├── README.md               ← HuggingFace Space readme
+└── SETUP.txt               ← This file
+
+
+===========================================================
+## 6. FEATURES IMPLEMENTED
+===========================================================
+
+Frontend (index.html):
+  ✅ Navigation bar with logo, search, cart
+  ✅ Hero section with animated particles & counters
+  ✅ Product categories grid with 3D hover
+  ✅ Products grid with filter buttons
+  ✅ Product cards with 3D perspective hover effect
+  ✅ Product detail modal with quantity selector
+  ✅ Shopping cart drawer (slide-in)
+  ✅ Quantity update in cart
+  ✅ Total price calculation
+  ✅ Checkout form with order summary
+  ✅ Order success screen
+  ✅ Contact form
+  ✅ Owner profile with photo (embedded)
+  ✅ About section
+  ✅ Footer with all shop details
+  ✅ RGB animated effects
+  ✅ Responsive mobile design
+  ✅ Toast notifications
+  ✅ Wishlist button
+  ✅ Search filter
+  ✅ Category filter
+  ✅ Smooth scroll animations
+  ✅ LocalStorage cart persistence
+
+Backend (FastAPI):
+  ✅ GET /api/products — list with filters
+  ✅ GET /api/products/{id} — single product
+  ✅ POST /api/orders — place order
+  ✅ POST /api/contact — contact form
+  ✅ GET /api/categories — all categories
+  ✅ Supabase integration
+  ✅ Mock data fallback (works without Supabase)
+  ✅ CORS enabled
+  ✅ Swagger UI at /docs
+  ✅ HuggingFace deployment ready
+  ✅ Docker support
+
+
+===========================================================
+## 7. SHOP DETAILS
+===========================================================
+
+Shop Name  : OMM SAI TRADERS
+Owner      : Prafulla Kumar Sahoo
+Address    : Bandhabhuin, Nayagarh, Odisha
+PIN        : 752082
+GSTIN      : 21FDBPS9893G2Z1
+Phone      : 9937464218
+Email      : prafullakumar.s978@gmail.com
+Dealer     : Fertilizer, Pesticide, Seeds, Equipment
